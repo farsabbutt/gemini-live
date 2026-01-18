@@ -1,0 +1,13 @@
+<html>
+    <body>
+        <button id="trigger-call">Trigger Call</button>
+        <script>
+            document.getElementById('trigger-call').addEventListener('click', () => {
+                fetch('http://localhost:3090/trigger-call')
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.error('Error:', error));
+            });
+        </script>
+    </body>
+</html>

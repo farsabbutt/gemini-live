@@ -1,0 +1,32 @@
+{
+  "name": "pizza",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@fastify/formbody": "^8.0.2",
+    "@fastify/websocket": "^11.2.0",
+    "axios": "^1.13.2",
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "fastify": "^5.7.1",
+    "mu-law": "^0.0.1",
+    "ngrok": "^5.0.0-beta.2",
+    "openai": "^6.16.0",
+    "twilio": "^5.11.2",
+    "vosk": "^0.3.39",
+    "websocket-stream": "^5.5.2",
+    "ws": "^8.19.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
