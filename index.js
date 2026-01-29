@@ -21,17 +21,41 @@ const alaw = require('./alaw_mulaw_lookup'); // See Step 4 for this helper
 // Keep your responses short and conversational.
 // `;
 
+const menu = `
+PIZZAS:\n
+Margherita [Vegetarian]: Small(~27cm) €5.90, Large(~33cm) €8.90\n
+Salami [Meat]: Small €7.40, Large €11.40, Cheezy Crust €14.40\n
+Champignon [Vegetarian]: Small €7.40, Large €11.40, Cheezy Crust €14.40\n
+Hawaii [Meat]: Small €8.90, Large €13.90, Cheezy Crust €16.90\n
+Tuna [Meat]: Small €8.90, Large €13.90, Cheezy Crust €16.90\n
+Pepperoni Lover’s [Meat]: Small €8.90, Large €13.90, Cheezy Crust €16.90\n
+Cheese Lover’s [Vegetarian]: Small €9.90, Large €15.90, Cheezy Crust €18.90\n
+Veggie Deluxe [Vegetarian]: Small €9.90, Large €15.90, Cheezy Crust €18.90\n
+Spinach [Vegetarian]: Small €7.40, Large €11.40, Cheezy Crust €14.40\n
+Garden Lover’s [Vegetarian]: Small €9.90, Large €15.90, Cheezy Crust €18.90\n
+Chicken Supreme [Meat]: Small €9.90, Large €15.90, Cheezy Crust €18.90\n
+Caribbean Chicken Lover’s [Meat]: Small €9.90, Large €15.90, Cheezy Crust €18.90\n
+Texas Supreme [Meat]: Small €10.90, Large €17.90, Cheezy Crust €20.90\n
+\nDRINKS:\n
+Pepsi [Vegan]: 0.5L €2.90, 1.5L €4.50\n
+Pepsi Zero [Vegan]: 0.5L €2.90, 1.5L €4.50\n
+7UP [Vegan]: 0.5L €2.90, 1.5L €4.50\n
+Lipton Ice Tea Peach [Vegan]: 0.5L €2.90, 1.5L €4.50\n
+Mineral Water (still/sparkling) [Vegan]: 0.5L €2.90, 1.5L €4.50\n`
+const SYSTEM_INSTRUCTION = `You are a worker in a pizza shop. You are answering the phone and taking orders.
+Be friendly, polite, and professional. After taking the order, make sure to get all the required customer information to have the pizza delivered. Here is the complete menu: ` + menu;
+
 // const SYSTEM_INSTRUCTION = `You are a German. You want to buy a car, the car is a Mercedes-Benz 180 A, 
 // the price is 12,800 Euros. Ask about all the important information about the car that a person needs before buying a car. 
 // Keep your responses short and conversational.`;
 
-const SYSTEM_INSTRUCTION = `You are a stressed customer calling your auto insurance provider to report an accident.
-You want to file a new claim for a minor fender-bender that just happened.
-You should speak naturally, sounding slightly shaken but cooperative.
-If they ask for your policy number, give: "AB-123-456".
-If they ask for the location of the accident, say: "The corner of 5th Avenue and Main Street."
-When the agent confirms the claim has been started, say thank you and hang up.
-Keep your responses short and conversational.`
+// const SYSTEM_INSTRUCTION = `You are a stressed customer calling your auto insurance provider to report an accident.
+// You want to file a new claim for a minor fender-bender that just happened.
+// You should speak naturally, sounding slightly shaken but cooperative.
+// If they ask for your policy number, give: "AB-123-456".
+// If they ask for the location of the accident, say: "The corner of 5th Avenue and Main Street."
+// When the agent confirms the claim has been started, say thank you and hang up.
+// Keep your responses short and conversational.`
 
 const app = express();
 app.use(cors());
@@ -40,7 +64,7 @@ const wss = new WebSocket.Server({ server });
 
 const PORT = process.env.PORT || 3090;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const MODEL = "models/gemini-2.0-flash-exp";
+const MODEL = "models/gemini-2.5-flash-native-audio-preview-12-2025";
 
 async function downloadAuthenticatedRecording(recordingUrl, filename) {
     try {
@@ -113,7 +137,7 @@ app.get('/trigger-call', (req, res) => {
 const PIZZA_SHOP_NUMBER = '+491786590235'; // Replace with the shop's number
 // const PIZZA_SHOP_NUMBER = '+4915753326573'; // Replace with the shop's number
 const YOUR_TWILIO_NUMBER = process.env.TWILIO_PHONE_NUMBER;
-const NGROK_URL = 'https://b7da1f8f4036.ngrok-free.app'; // Replace with your actual ngrok URL
+const NGROK_URL = 'https://50df458d1599.ngrok-free.app'; // Replace with your actual ngrok URL
 
 client.calls.create({
     url: `${NGROK_URL}/twiml`, // This tells Twilio where to get instructions (connect stream)
