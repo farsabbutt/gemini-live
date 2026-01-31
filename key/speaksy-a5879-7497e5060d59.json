@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "speaksy-a5879",
+  "private_key_id": "7497e5060d59dd864a7dfc02fcaa4df253933fd9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCUEO8o+nk56Iv4\n2I8J6WI1tqzlP3nea9ZYaqQKE9GHv1P9trU0sxDqxpxbaNbBjDMQrJb8A4Q31jpU\nzT7VBTxyl40RG/N66Kq+vm9OQgExJsSrHylKow+6Q3HlAfwH6JhQoLYDdKLEsG4a\nS3t1uP+fvJhjUA8Xco8peKUlrKsrCjLBj21htl8lwjdytrrtpkADfqeEDAbeic2I\niq6dmqELcxjNN7RaCAg3ExNACS/IK3bkGE4QsKU1+QZ9Dapt0OzajptM3p9LROSa\nOfjxaJcat0AczIVqWe+nOcjbWspCegPDJfaY4VAiFt63vYhRNjgdjPGRAfzbshIQ\n9FXDd7QhAgMBAAECggEAAWVve+lwvzUMLNqN7r/+pxcD5l2E3q4RpV/MEDRDo44Q\nUrIoX0jY/f3Fd68zZzvVN3EJM3MtCgHBJw+Qah3Uhhgbwm+LCjurcIUHM6u3qyj8\nbcircQK8oTsFle1A3So6VXhOfxXYexZW03Smw2NtNapnnXghzEzOQMvcctCABLXe\nO5fAW+ouevqy+hvVdScuQ4ejoslsRbIEg2geQWXlPu9Bby10DIZX8Q6G7Xa/Zwzh\np/SRiKcwsyjxSL12tpKNUU2BVHHLtOtRB6m0xVMVDmtdiG+JlmhTVrm3vSMPkl/Z\nUSolfxEXcleCJEkDz5aDDBg0ajcvKAwIrGXbwo36SQKBgQDMNXXeU86jirqoI1QS\nu5Ktz5J2cwmEXiEue/UMWalDYE/LCtjE2w+VHM+bN/2AykmK84VibrZRenfVBYeU\nWCxCi3/Wh9i8G18WaNuyZAgMafrTTCCL8gEn1f5G6MA845NLJGxMJobhzbHNl4aK\ngnmFa3Pe5a/4eAbg40Ry/eRpKwKBgQC5nlU6sBAqJBGFCKD4+k3OYy+k4IT4gsYn\nKH2/dmritbNOaIcF371vNWjBxRLH7gYVBF1H6pWFS87i5JK9bBwDBCdcZvBIyzpU\n1EYR7l66Hr/COxonDyp9pbbCNwlGWv+0DsrKQTq8cP72szR3WCGCZIfgyU/Kttod\n8dD1p9vZ4wKBgHrPtAFvuZiVeEhiZs+VS1OIwHbIHHMlASOpnOg+jBNfOt3Lui45\n6Jcu6pRZCfaIsc4FQrS+DJvX4XWVi8JlfMjQiKOGs4v9kiQyD96rVkPRAO5OnExN\n0PAaPIB8vhBgdVb9orvxd7EZOdOBS4LFkTvyMY9d54Sw+sIJLENT+ihdAoGABgwB\nbMsFi8nnBDV2wQWueTXD/JQP4OSpvebUyeL6sm4G7Fv9YhSa4D+WLRHVfcvkSNT+\nkPQ0cMY6dCvMF/2on/SHr7vuwgBU4ySTL8xbK6cKyjIQtQsKcFNws70FQVR/lgcR\nVitv1Wm89J577BNj7BKIVqtYPRtd2bHiA863G88CgYEAjtWB8teGt+rB4/ADGCGy\n1rsYuPhbcRL/4viKBhj/tJlUDB2TSlaJCcJ0HiJT+7M0AwzaLDTangGVixOmAuxG\nvoCjYzY3mapQqzuLcdmDahBVLp2PFjeFSFb4dt9dcm18mTciU4L/MyusdlLJbMGI\n4qS/N4AneKY1qXIKy/qM4RA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "twilio-calls@speaksy-a5879.iam.gserviceaccount.com",
+  "client_id": "101231006116220036947",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/twilio-calls%40speaksy-a5879.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

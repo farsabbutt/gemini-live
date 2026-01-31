@@ -1,0 +1,488 @@
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "transcript": "hello",
+          "confidence": 0.9072163
+        }
+      ],
+      "resultEndOffset": "3.170s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " so it's not talking back",
+          "confidence": 0.97671336
+        }
+      ],
+      "resultEndOffset": "7.870s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " if we're getting a little bit down I would like to order a pizza",
+          "confidence": 0.68122774
+        }
+      ],
+      "resultEndOffset": "14.640s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " have you certainly",
+          "confidence": 0.77346396
+        }
+      ],
+      "resultEndOffset": "18.600s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " so sorry I didn't quite catch that",
+          "confidence": 0.945432
+        }
+      ],
+      "resultEndOffset": "24.350s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " I would like to order a pizza",
+          "confidence": 0.9210361
+        }
+      ],
+      "resultEndOffset": "27.850s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " I understand what kind of pizza would you like to order today",
+          "confidence": 0.9922082
+        }
+      ],
+      "resultEndOffset": "35.120s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " I want a huge",
+          "confidence": 0.92879605
+        }
+      ],
+      "resultEndOffset": "38.820s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " pizza with",
+          "confidence": 0.9013226
+        }
+      ],
+      "resultEndOffset": "42.470s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " chicken breast and broccoli and some sprinkles of cheddar cheese",
+          "confidence": 0.8831245
+        }
+      ],
+      "resultEndOffset": "49.630s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " and garlic oil on top of coal",
+          "confidence": 0.82221043
+        }
+      ],
+      "resultEndOffset": "54.340s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " maybe the cross should be stuffed with cheese",
+          "confidence": 0.951276
+        }
+      ],
+      "resultEndOffset": "60.020s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " that's it",
+          "confidence": 0.71666
+        }
+      ],
+      "resultEndOffset": "62.920s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": "that sounds lovely we have chicken supreme and Caribbean Chicken Lovers pizzas with chicken for a large size and cheesy crust those would be 20 euros 90 cents for Texas Supreme or 18 Euros 90 for the other chicken options we don't have broccoli cheddar or garlic oil specifically as toppings but which of the chicken pizzas would you prefer",
+          "confidence": 0.97743684
+        }
+      ],
+      "resultEndOffset": "90.690s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " the one with",
+          "confidence": 0.88564557
+        }
+      ],
+      "resultEndOffset": "93.250s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " cheddar broccoli and garlic oil",
+          "confidence": 0.67577755
+        }
+      ],
+      "resultEndOffset": "96.770s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " I mentioned we don't have those specific topics the closest options are chicken supreme Caribbean Chicken Lovers or Texas Supreme they all come with cheesy crust if you like which one would you like to order",
+          "confidence": 0.96033967
+        }
+      ],
+      "resultEndOffset": "114.300s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " can you tell me what on the",
+          "confidence": 0.84954464
+        }
+      ],
+      "resultEndOffset": "118.620s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " Caribbean",
+          "confidence": 0.76728076
+        }
+      ],
+      "resultEndOffset": "120.180s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " the Caribbean Chicken Lovers includes chicken and pineapple giving it a tropical flavor a large with cheesy crust is 1890 does that sound good",
+          "confidence": 0.91712445
+        }
+      ],
+      "resultEndOffset": "134.350s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": "know that sounds like a biological weapon then I will just take the chicken meat lovers",
+          "confidence": 0.9421543
+        }
+      ],
+      "resultEndOffset": "142.070s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " no problem in that case would you like the chicken supreme or Texas Supreme and would you still like a large with cheesy crust",
+          "confidence": 0.9843089
+        }
+      ],
+      "resultEndOffset": "155.060s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " yes and the chicken supreme please",
+          "confidence": 0.7655663
+        }
+      ],
+      "resultEndOffset": "158.510s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " great so that's one large chicken supreme with cheesy crust for 1890 is there anything else you'd like to add perhaps a drink",
+          "confidence": 0.9822676
+        }
+      ],
+      "resultEndOffset": "170.960s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " do you have chicken fingers",
+          "confidence": 0.938719
+        }
+      ],
+      "resultEndOffset": "174.770s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " I'm afraid we don't have chicken fingers you can see the drinks menu if you're interested in a beverage",
+          "confidence": 0.9166624
+        }
+      ],
+      "resultEndOffset": "184.830s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " yes I want Canada Dry",
+          "confidence": 0.8443058
+        }
+      ],
+      "resultEndOffset": "189.800s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " we don't have Canada Dry but we do have Pepsi Pepsi Zero 7-Up Lipton iced tea Peach and mineral water and point five leader or 1.5 liter bottles are you interested in any of those",
+          "confidence": 0.8492583
+        }
+      ],
+      "resultEndOffset": "205.940s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": "7 up please",
+          "confidence": 0.6564574
+        }
+      ],
+      "resultEndOffset": "208.170s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " sure what size would you like for the 7Up 0.5 liter or 1.5 liter",
+          "confidence": 0.9181527
+        }
+      ],
+      "resultEndOffset": "215.470s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " I have a lot of pizzas so I will take the large size",
+          "confidence": 0.94664675
+        }
+      ],
+      "resultEndOffset": "219.210s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " perfect so that's one large 1.5 liter 7 Up for four dollars fifty cents to confirm your order is one large chicken supreme with cheesy crust for 1890 and 1 large 7Up for four dollars and fifty cents is that correct",
+          "confidence": 0.8633169
+        }
+      ],
+      "resultEndOffset": "237.800s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " that sounds great",
+          "confidence": 0.8113795
+        }
+      ],
+      "resultEndOffset": "239.910s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " perfect now for the delivery could you get your name delivery address and a phone number",
+          "confidence": 0.9676609
+        }
+      ],
+      "resultEndOffset": "247.880s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " it has to be delivered to range 501",
+          "confidence": 0.7763669
+        }
+      ],
+      "resultEndOffset": "263.130s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " in",
+          "confidence": 0.6991698
+        }
+      ],
+      "resultEndOffset": "267.710s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " got it ringstrasse 51 in compass and could I have your name and contact phone number please",
+          "confidence": 0.90001255
+        }
+      ],
+      "resultEndOffset": "276.910s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": "Max mustermann",
+          "confidence": 0.50121135
+        }
+      ],
+      "resultEndOffset": "279.410s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " the people here",
+          "confidence": 0.39572287
+        }
+      ],
+      "resultEndOffset": "282.530s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " thank you Max Mastermind and a phone number please",
+          "confidence": 0.90467155
+        }
+      ],
+      "resultEndOffset": "288.680s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " oh that's what I feel from sexy",
+          "confidence": 0.49927452
+        }
+      ],
+      "resultEndOffset": "295.980s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " thank you your order will be delivered to ringstrasse 51 and Kellen pass the total is 23 Euros 40 cents it should be with you in about 30 to 40 minutes is there anything else I can help you with",
+          "confidence": 0.9242409
+        }
+      ],
+      "resultEndOffset": "312.100s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " no I think that's it",
+          "confidence": 0.8890805
+        }
+      ],
+      "resultEndOffset": "314.670s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " thank you for your order and join your reel",
+          "confidence": 0.93606186
+        }
+      ],
+      "resultEndOffset": "319.520s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " thank you",
+          "confidence": 0.79932487
+        }
+      ],
+      "resultEndOffset": "321.410s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " you're welcome have a great day",
+          "confidence": 0.95782906
+        }
+      ],
+      "resultEndOffset": "326.020s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " bye",
+          "confidence": 0.3142272
+        }
+      ],
+      "resultEndOffset": "328.040s",
+      "languageCode": "en-us"
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " bye",
+          "confidence": 0.64765304
+        }
+      ],
+      "resultEndOffset": "330.620s",
+      "languageCode": "en-us"
+    },
+    {
+      "resultEndOffset": "331.580s",
+      "languageCode": "en-us"
+    }
+  ]
+}

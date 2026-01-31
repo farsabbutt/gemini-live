@@ -1,5 +1,5 @@
 {
-  "name": "pizza",
+  "name": "gemini-live",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,9 @@
   "dependencies": {
     "@fastify/formbody": "^8.0.2",
     "@fastify/websocket": "^11.2.0",
+    "@google-cloud/speech": "^7.2.1",
+    "@google-cloud/storage": "^7.18.0",
+    "@google/genai": "^1.38.0",
     "axios": "^1.13.2",
     "body-parser": "^2.2.2",
     "cors": "^2.8.5",

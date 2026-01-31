@@ -9,6 +9,11 @@ const http = require('http');
 const cors = require('cors');
 const { VoiceResponse } = require('twilio').twiml;
 
+const speech = require('@google-cloud/speech').v2;
+const { Storage } = require('@google-cloud/storage');
+const { GoogleGenAI } = require('@google/genai');
+
+
 // Audio conversion utilities (Quick & dirty implementation for the demo)
 // In production, use libraries like 'wavefile' or 'sox'
 const alaw = require('./alaw_mulaw_lookup'); // See Step 4 for this helper
@@ -65,6 +70,9 @@ const wss = new WebSocket.Server({ server });
 const PORT = process.env.PORT || 3090;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const MODEL = "models/gemini-2.5-flash-native-audio-preview-12-2025";
+
+// 1. AUTHENTICATION
+const serviceAccountKeyFile = "./key/speaksy-a5879-7497e5060d59.json";
 
 async function downloadAuthenticatedRecording(recordingUrl, filename) {
     try {
@@ -126,7 +134,8 @@ app.get('/call-ended-recording-status', async (req, res) => {
     if (RecordingStatus === 'completed') {
         const fileName = `${CallSid}-${RecordingSid}`;
         await downloadAuthenticatedRecording(RecordingUrl, fileName);
-        console.log(`Saved: ${fileName}.mp3`);
+        console.log(`Saved: ${fileName}`);
+        await transcribeAudio(`${fileName}.mp3`)
     }
     res.status(200).end();
 });
@@ -135,9 +144,8 @@ app.get('/trigger-call', (req, res) => {
     const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 const PIZZA_SHOP_NUMBER = '+491786590235'; // Replace with the shop's number
-// const PIZZA_SHOP_NUMBER = '+4915753326573'; // Replace with the shop's number
 const YOUR_TWILIO_NUMBER = process.env.TWILIO_PHONE_NUMBER;
-const NGROK_URL = 'https://50df458d1599.ngrok-free.app'; // Replace with your actual ngrok URL
+const NGROK_URL = 'https://a6d5fcbf3872.ngrok-free.app'; // Replace with your actual ngrok URL
 
 client.calls.create({
     url: `${NGROK_URL}/twiml`, // This tells Twilio where to get instructions (connect stream)
@@ -302,5 +310,173 @@ function upsampleBuffer(buffer, factor) {
     }
     return output;
 }
+
+async function transcribeAudio(audioFileName) {
+    const maxAttempts = 3;
+    let delay = 3000; // 2 seconds between retries
+  
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      try {
+        // --- CONFIGURATION ---
+        const localFilePath = "./recordings/" + audioFileName;
+        const bucketName = "fnb-twilio-calls";
+        const recognizer = "projects/speaksy-a5879/locations/global/recognizers/_";
+        const workspace = "gs://fnb-twilio-calls/transcripts";
+  
+        const speechClient = new speech.SpeechClient({ keyFilename: serviceAccountKeyFile });
+        const storage = new Storage({ keyFilename: serviceAccountKeyFile });
+  
+        console.log(`Attempt ${attempt}: Uploading ${localFilePath}...`);
+  
+        const fileName = path.basename(localFilePath);
+        const gcsDestination = `audio-files/${fileName}`;
+  
+        await storage.bucket(bucketName).upload(localFilePath, { destination: gcsDestination });
+  
+        const gcsUri = `gs://${bucketName}/${gcsDestination}`;
+        console.log(`   Upload complete: ${gcsUri}`);
+  
+        console.log('2. Starting Batch Transcription...');
+        const recognitionConfig = {
+          autoDecodingConfig: {},
+          model: "long",
+          languageCodes: ["en-US"],
+        };
+  
+        const transcriptionRequest = {
+          recognizer: recognizer,
+          config: recognitionConfig,
+          files: [{ uri: gcsUri }],
+          recognitionOutputConfig: { gcsOutputConfig: { uri: workspace } },
+        };
+  
+        const [operation] = await speechClient.batchRecognize(transcriptionRequest);
+        const [response] = await operation.promise();
+  
+        console.log("3. Transcription Complete!");
+        
+        const transcriptUri = response?.results[gcsUri]?.uri;
+        const transcriptFileName = transcriptUri.split('/')[4];
+        const transcriptContent = await readBucketFile(transcriptFileName);
+  
+        if (!transcriptContent) {
+          throw new Error('Transcript content not found in bucket.');
+        }
+  
+        const plainTranscript = buildPlainText(transcriptContent);
+        await extractStructuredDataFromPlainText(plainTranscript);
+  
+        // If we reach here, break out of the loop because we succeeded!
+        return; 
+  
+      } catch (err) {
+        console.error(`Error on attempt ${attempt}:`, err.message);
+  
+        if (attempt === maxAttempts) {
+          console.error("Max retries reached. Transcription failed.");
+          throw err; // Re-throw the error after final attempt
+        }
+  
+        console.log(`Waiting ${delay / 1000}s before next try...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+  }
+
+async function readBucketFile(fileName) {
+    // 1. Initialize storage
+    const storage = new Storage({
+      keyFilename: serviceAccountKeyFile
+  });
+  
+    // 2. Define your bucket and filename
+    const bucketName = 'fnb-twilio-calls';
+    const filePath = 'transcripts/' + fileName;
+  
+    try {
+      // 3. Download the file
+      // The download() method returns an array with a Buffer as the first item
+      const [fileContents] = await storage
+        .bucket(bucketName)
+        .file(filePath)
+        .download();
+  
+      // 4. Convert Buffer to string (if it's a text file)
+      const contents = fileContents.toString();
+      
+      console.log('Read Bucket File success!');
+    //   console.log(JSON.parse(contents));
+
+      return JSON.parse(contents)
+      
+    } catch (error) {
+      console.error('Error reading file:', error);
+    }
+    return
+  }
+
+  function buildPlainText(data) {
+    let text = ``
+    data?.results?.forEach(result => {
+        text = text + result.alternatives?.[0].transcript + "\n";
+    });
+    return text
+  }
+
+  async function extractStructuredDataFromPlainText(plainText) {
+    const ai = new GoogleGenAI({
+      apiKey: process.env.GEMINI_API_KEY,
+    });
+    const tools = [
+      {
+        googleSearch: {
+        }
+      },
+    ];
+    const config = {
+      thinkingConfig: {
+        thinkingLevel: 'HIGH',
+      },
+      tools,
+    };
+    const model = 'gemini-3-pro-preview';
+    const contents = [
+      {
+        role: 'user',
+        parts: [
+          {
+            text: `extract the order data and give output as RAW json without markdown code blocks, backticks, or any preamble/postscript.
+            It must have the following structure:
+interface Order {
+  order_items: OrderItem[]
+  delivery_details: DeliveryDetails
+  total: string
+}
+ OrderItem {
+  item: string
+  size: string
+  crust?: string
+  quantity: number
+}
+
+interface DeliveryDetails {
+  address: string
+  phone_number: string
+  name: string
+}
+here is the text: ${plainText}`,
+          },
+        ],
+      },
+    ];
+  
+    const response = await ai.models.generateContent({
+      model,
+      config,
+      contents,
+    });
+
+    console.log(`Structured Data`, JSON.parse(response.text));
+  }
 
 server.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

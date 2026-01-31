@@ -1,13 +1,143 @@
-<html>
-    <body>
-        <button id="trigger-call">Trigger Call</button>
-        <script>
-            document.getElementById('trigger-call').addEventListener('click', () => {
-                fetch('http://localhost:3090/trigger-call')
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-                    .catch(error => console.error('Error:', error));
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Pizza Flow | Order Management</title>
+</head>
+<body class="bg-slate-50 font-sans text-slate-900">
+
+    <nav class="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center sticky top-0 z-10">
+        <div class="flex items-center gap-2">
+            <div class="bg-orange-500 p-2 rounded-lg text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <h1 class="text-xl font-bold tracking-tight text-slate-800">PizzaFlow <span class="text-orange-500">Live</span></h1>
+        </div>
+        
+        <div class="flex items-center gap-4">
+            <span id="connection-status" class="text-xs font-bold text-green-500 flex items-center gap-1">
+                <span class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span> LIVE
+            </span>
+            <button id="trigger-call" class="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all shadow-md shadow-orange-100 flex items-center gap-2 active:scale-95">
+                Trigger Call
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <p class="text-sm font-medium text-slate-500">Active Orders</p>
+                <h2 class="text-3xl font-bold mt-1" id="stat-active-orders">0</h2>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <p class="text-sm font-medium text-slate-500">Daily Revenue</p>
+                <h2 class="text-3xl font-bold mt-1" id="stat-revenue">$0</h2>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <p class="text-sm font-medium text-slate-500">New Alerts</p>
+                <h2 class="text-3xl font-bold mt-1 text-orange-600">Realtime</h2>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" id="order-container">
+            <div class="col-span-full text-center py-20 text-slate-400">
+                <p>Waiting for orders...</p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyAPGV792l-cWyJ2Rr6LMLoj47YEd5feSBc",
+            authDomain: "pizza-39e71.firebaseapp.com",
+            projectId: "pizza-39e71",
+            storageBucket: "pizza-39e71.firebasestorage.app",
+            messagingSenderId: "748913388099",
+            appId: "1:748913388099:web:c70112efe3d8a5d3e142f6"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const orderContainer = document.getElementById('order-container');
+    
+        const q = query(collection(db, "orders"));
+    
+        onSnapshot(q, (snapshot) => {
+            console.log('snap', snapshot)
+            if (snapshot.empty) {
+                orderContainer.innerHTML = `<div class="col-span-full text-center py-20 text-slate-400">No active orders found.</div>`;
+                return;
+            }
+    
+            let ordersHtml = '';
+            let totalActive = 0;
+    
+            snapshot.forEach((doc) => {
+                const order = doc.data(); // This matches your Order interface
+                totalActive++;
+                
+                // Destructuring based on your provided structure
+                const { order_items, delivery_details, total } = order;
+                const name = delivery_details?.name || 'Unknown Customer';
+                const address = delivery_details?.address || 'No address provided';
+                const phone = delivery_details?.phone_number || 'No phone';
+    
+                ordersHtml += `
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
+                        <div class="p-5 border-b border-slate-100 flex justify-between items-start bg-slate-50/50">
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-800">Order #${doc.id.slice(-4).toUpperCase()}</h3>
+                                <p class="text-sm font-semibold text-orange-600">${name}</p>
+                            </div>
+                            <span class="text-xs font-mono text-slate-400">${phone}</span>
+                        </div>
+                        
+                        <div class="p-5">
+                            <div class="mb-4">
+                                <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-2">Items</p>
+                                <ul class="text-sm text-slate-600 space-y-2">
+                                    ${order_items.map(item => `
+                                        <li class="flex justify-between items-center border-b border-slate-50 pb-2">
+                                            <div>
+                                                <span class="font-bold text-slate-800">${item.quantity}x</span> ${item.item}
+                                                <p class="text-xs text-slate-400">${item.size}${item.crust ? ` • ${item.crust}` : ''}</p>
+                                            </div>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+    
+                            <div class="bg-slate-50 p-3 rounded-lg mb-4">
+                                <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Delivery To</p>
+                                <p class="text-xs text-slate-600 truncate">${address}</p>
+                            </div>
+    
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-sm font-medium text-slate-500">Total Amount</span>
+                                <span class="text-xl font-bold text-slate-900">$${total}</span>
+                            </div>
+    
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm">
+                                    Complete Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
             });
-        </script>
-    </body>
+    
+            orderContainer.innerHTML = ordersHtml;
+            document.getElementById('stat-active-orders').innerText = totalActive;
+        });
+    </script>
+</body>
 </html>
